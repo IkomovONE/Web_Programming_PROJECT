@@ -92,8 +92,8 @@ const Header= () => {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
               >
-                <MenuItem  component={Link} to="/login">Log in</MenuItem>
-                <MenuItem  component={Link} to="/register">Register</MenuItem>
+                <MenuItem  onClick={handleClose} component={Link} to="/login">Log in</MenuItem>
+                <MenuItem  onClick={handleClose} component={Link} to="/register">Register</MenuItem>
               </Menu>
             </div>
 

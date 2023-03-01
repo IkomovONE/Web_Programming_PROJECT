@@ -4,7 +4,7 @@
   background-color: rgb(50, 50, 50);
 
   background-image: url("./background.jpg");
-  background-blend-mode:color-dodge;
+  
   margin: 0;
   max-width: 1800px;
   
@@ -34,6 +34,22 @@
 
 
 }
+
+@media (max-width: 768px) {
+  #darkened {
+    margin-left: 1cm;
+
+    background-color: #00000073;
+
+    max-width: 80%;
+
+    min-height: 25cm;
+
+    align-items: center;
+  }
+}
+
+
 
 
 .toolbar {

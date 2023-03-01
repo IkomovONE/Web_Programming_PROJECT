@@ -4,6 +4,8 @@ import {useState} from 'react'
 import Header  from "./components/Header"
 import About  from "./components/About"
 import NewPost  from "./components/NewPost"
+import Login  from "./components/Login"
+import Register  from "./components/Register"
 
 
 import Book from './components/Book'
@@ -51,8 +53,8 @@ function App() {
           <Route path="/book/:id" element={<Book />}/>
           <Route path="/about" element={<About />}/>
           <Route path="/newpost" element={<NewPost />}/>
-          <Route path="/login" element={<NewPost />}/>
-          <Route path="/register" element={<NewPost />}/>
+          <Route path="/login" element={<Login />}/>
+          <Route path="/register" element={<Register />}/>
           <Route path="/*" element={
             <div className="div">
               <div id="darkened">
