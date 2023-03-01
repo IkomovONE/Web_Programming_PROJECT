@@ -1,6 +1,9 @@
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 import './App.css';
 import {useState} from 'react'
+import Header  from "./components/Header"
+import About  from "./components/About"
+import NewPost  from "./components/NewPost"
 
 
 import Book from './components/Book'
@@ -33,68 +36,70 @@ function App() {
 
 
   return (
-    <div className="App">
-      <header className="App-header">
-
+    
+    <Router>
+      <div className="App">
         
+        <header className="App-header">
 
-        <Router>
-        <h1>books</h1>
+          <Header />
 
-          <Routes>
+        </header>
+
+
+        <Routes >
           <Route path="/book/:id" element={<Book />}/>
-          <Route path="/*" element={<h2>404: this is not the webpage you are looking for</h2>}/>
+          <Route path="/about" element={<About />}/>
+          <Route path="/newpost" element={<NewPost />}/>
+          <Route path="/login" element={<NewPost />}/>
+          <Route path="/register" element={<NewPost />}/>
+          <Route path="/*" element={
+            <div className="div">
+              <div id="darkened">
+                <h1>404: this is not the webpage you are looking for</h1>
+                <h2>-------------------------------------------------</h2>
+              </div>
+
+            </div>
+          }/>
+
           <Route path="/" element={
+
+            <div className="div">
+
+              <div id="darkened">
+
+                <h1>Code snippets!</h1>
+
+
+                <h2>-------------------------------------------------</h2>
             
-            <form onSubmit={submit} onChange={handleChange}> 
             
+              
+                
 
-      
-            <label id= "label" >Name of the book:</label>
+            </div>
 
-            <input id= "name" type="text" name="name"></input>
-
-            <p></p>
-
-            <label id= "label" >Author of the book:</label>
-
-            <input id= "author" type="text" name="author"></input>
-            <p></p>
-
-
-            <label id= "label" type= "number" >Number of pages:</label>
-
-
-            <input id= "pages" type="text" name="pages"></input>
-            <p></p>
-
-
-            <input id= "submit" type= "submit" name="submit" value= "Save the book to DB"></input>
-            <p></p>
-
-        
-          </form>
+          </div>
           }/>
 
           </Routes>
 
-
-
-        
-
-
           
 
-          
-            
 
 
-        </Router>
 
-        
-        
-      </header>
-    </div>
+      </div>
+
+
+
+
+    </Router>
+    
+      
+    
+    
   );
 }
 

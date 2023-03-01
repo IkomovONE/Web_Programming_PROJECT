@@ -1,5 +1,141 @@
 .App {
+  align-content: center;
   text-align: center;
+  background-color: rgb(50, 50, 50);
+
+  background-image: url("./background.jpg");
+  background-blend-mode:color-dodge;
+  margin: 0;
+  max-width: 1800px;
+  
+
+}
+
+@media (max-width: 768px) {
+  .app {
+    max-width: 100%;
+    padding: 0 20px;
+  }
+}
+
+#darkened {
+
+
+  margin-left: 4cm;
+
+  background-color: #00000073;
+
+  max-width: 80%;
+
+  min-height: 25cm;
+
+  align-items: center;
+
+
+
+}
+
+
+.toolbar {
+
+  color: gray;
+  background-color: black;
+  
+  
+
+
+}
+
+
+
+.MuiMenu-list {
+  color: gray;
+  background-color: black; /* modify the font color of the menu items */
+}
+
+
+.typo {
+
+  min-width: 5cm;
+  text-align: start;
+  
+  
+}
+
+@media (max-width: 768px) {
+  .typo {
+    
+    size: 3cm;
+
+    min-width: 4cm;
+
+
+    text-align: start;
+    font-size: x-small;
+  }
+}
+
+#menu-appbar {
+
+  color: aqua;
+  background-color: #000000;
+}
+
+.about {
+
+  min-width: 25cm;
+  
+  
+}
+
+@media (max-width: 768px) {
+  .about {
+    min-width: 0.2cm;
+  
+  }
+}
+
+#divider {
+
+  
+
+  font-size:xxx-large;
+
+  text-align: top;
+
+  color: white;
+
+  font-family: 'Courier New', Courier, monospace;
+
+  
+
+}
+
+@media (max-width: 768px) {
+  #divider {
+
+    font-size:xxx-large;
+
+    font-weight: 700;
+  
+    text-align: right;
+  
+    font-family: 'Courier New', Courier, monospace;
+  
+    
+  }
+}
+
+.avatar {
+
+  align-items: end;
+}
+
+@media (max-width: 300px) {
+  .avatar {
+
+    margin-left: 12;
+  }
 }
 
 .App-logo {
@@ -7,21 +143,38 @@
   pointer-events: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.div {
+
+  min-height: 25cm;
+
+  margin: 0;
+  
+  padding: 0;
+
+  
+
+  
+
+  
+  
+
+
 }
 
+
+
+
+
+
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  background-color: #000000;
+  min-height: 8vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  
 }
 
 .App-link {
@@ -47,9 +200,24 @@
 
 #submit {
 
-  padding-top: 1cm;
+  
 
 
-  width: 5cm;
+  width: 4cm;
   height: 1cm;
+}
+
+
+h1 {
+
+  color:  grey;
+
+  font-size: xxx-large;
+}
+
+h2 {
+
+  color:  grey;
+
+  font-size: xxx-large;
 }
