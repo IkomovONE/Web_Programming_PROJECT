@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
 .App {
   align-content: center;
   text-align: center;
@@ -27,7 +29,7 @@
 
   max-width: 80%;
 
-  min-height: 25cm;
+  min-height: 10cm;
 
   align-items: center;
 
@@ -93,13 +95,13 @@
 
 #menu-appbar {
 
-  color: aqua;
+  
   background-color: #000000;
 }
 
 .about {
 
-  min-width: 25cm;
+  min-width: 20cm;
   
   
 }
@@ -161,7 +163,7 @@
 
 .div {
 
-  min-height: 25cm;
+  min-height: 40cm;
 
   margin: 0;
   
@@ -236,4 +238,50 @@ h2 {
   color:  grey;
 
   font-size: xxx-large;
+}
+
+#label {
+
+  color: gray;
+
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+}
+
+#sub, textarea{
+
+  background-color: gray;
+
+  
+
+
+}
+
+input, textarea  {
+
+  background-color: gray;
+
+  
+  
+}
+
+input {
+  size: 5cm;
+}
+
+#home {
+
+  color: gray;
+
+  size: 5cm;
+
+  font-size: large;
+
+
+}
+
+#list {
+  min-height: 10cm;
+
+  color: #61dafb;
 }

@@ -5,37 +5,23 @@ import Header  from "./components/Header"
 import About  from "./components/About"
 import NewPost  from "./components/NewPost"
 import Login  from "./components/Login"
+import Logout  from "./components/Logout"
+import MainPage from './components/MainPage';
 import Register  from "./components/Register"
 
 
-import Book from './components/Book'
+
 
 
 function App() {
 
   
 
-  const [userData, setUserData] = useState({})
+  
 
+  
 
-  const submit = (e) => {
-    e.preventDefault()
-    
-
-    fetch("/api/book/", {
-        method: "POST",
-        headers: {
-            "Content-type": "application/json"
-        },
-        body: JSON.stringify(userData),
-        mode: "cors"
-    })
-  }
-
-  const handleChange = (e) => {
-    setUserData({...userData, [e.target.name]: e.target.value})
-}
-
+  
 
   return (
     
@@ -50,11 +36,15 @@ function App() {
 
 
         <Routes >
-          <Route path="/book/:id" element={<Book />}/>
+          
           <Route path="/about" element={<About />}/>
           <Route path="/newpost" element={<NewPost />}/>
           <Route path="/login" element={<Login />}/>
           <Route path="/register" element={<Register />}/>
+          <Route path="/logout" element={<Logout />}/>
+
+          <Route path="/" element= {<MainPage />}/>
+          
           <Route path="/*" element={
             <div className="div">
               <div id="darkened">
@@ -65,25 +55,7 @@ function App() {
             </div>
           }/>
 
-          <Route path="/" element={
-
-            <div className="div">
-
-              <div id="darkened">
-
-                <h1>Code snippets!</h1>
-
-
-                <h2>-------------------------------------------------</h2>
-            
-            
-              
-                
-
-            </div>
-
-          </div>
-          }/>
+          
 
           </Routes>
 

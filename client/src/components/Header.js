@@ -23,11 +23,56 @@ import {Link as RouterLink} from "react-router-dom"
 
 const Header= () => {
 
+  const [auth, setAuth] = React.useState(false);
+
+
+  const CheckLogin = () => {
+
+    var token= window.localStorage.getItem("token")
+
+    fetch("/api/token/check", {
+      method: "POST",
+
+      headers: {
+        "authorization": token
+      },
+
+      body: null,
+      
+
+    }).then(response => {
+                
+      return response.json()})
+  .then(json => {
+
+    if (json.message== "VERIFIED") {
+
+      setAuth(true);
+
+      console.log(auth);
+
+    }
+
+    else {
+      setAuth(false);
+    }
+
+
+
+  })
+
+
+  };
+
+
+
+
 
     
 
     
-    const [auth, setAuth] = React.useState(true);
+    
+
     const [anchorEl, setAnchorEl] = React.useState(null);
 
 
@@ -40,6 +85,9 @@ const Header= () => {
       const handleClose = () => {
         setAnchorEl(null);
       };
+
+
+      CheckLogin();
 
     
 
@@ -62,6 +110,8 @@ const Header= () => {
                 
 
                 <Button   color="inherit"  component={Link} to="/about">{("About")}</Button>
+
+                {auth && <Button   color="inherit"  component={Link} to="/newpost">{("New Post")}</Button>}
 
                 <div className= "about"></div>
 
@@ -92,8 +142,10 @@ const Header= () => {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
               >
-                <MenuItem  onClick={handleClose} component={Link} to="/login">Log in</MenuItem>
-                <MenuItem  onClick={handleClose} component={Link} to="/register">Register</MenuItem>
+                {!auth &&<MenuItem  onClick={handleClose} component={Link} to="/login">Log in</MenuItem>}
+                {!auth &&<MenuItem  onClick={handleClose} component={Link} to="/register">Register</MenuItem>}
+                {auth &&<MenuItem  onClick={handleClose} component={Link} to="/user/profile">My Profile</MenuItem>}
+                {auth &&<MenuItem  onClick={handleClose} component={Link} to="/logout">Log Out</MenuItem>}
               </Menu>
             </div>
 
