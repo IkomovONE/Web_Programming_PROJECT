@@ -15,12 +15,16 @@ function MainPage() {
 
     
 
+    
+
     return (
-      <div className="div">
-        
+    <div className="div">
       <div id="darkened">
+        <div id="head">
 
               <h1>Code snippets!</h1>
+
+              <h3>Newest posts</h3>
 
 
               <h2>-------------------------------------------------</h2>
@@ -30,11 +34,11 @@ function MainPage() {
 
             
 
-              
+        </div>       
 
-          </div>
+      </div>
 
-        </div>
+    </div>
     )
 }
 

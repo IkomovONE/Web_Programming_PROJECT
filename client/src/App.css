@@ -37,13 +37,19 @@
 
 }
 
+#head {
+  border-bottom: 1px solid;
+}
+
 @media (max-width: 768px) {
   #darkened {
     margin-left: 1cm;
 
     background-color: #00000073;
 
-    max-width: 80%;
+    max-width: 90%;
+
+    
 
     min-height: 25cm;
 
@@ -240,6 +246,13 @@ h2 {
   font-size: xxx-large;
 }
 
+h3 {
+
+  color:  grey;
+
+  font-size: x-large;
+}
+
 #label {
 
   color: gray;
@@ -281,7 +294,84 @@ input {
 }
 
 #list {
-  min-height: 10cm;
 
-  color: #61dafb;
+  display:grid;
+
+  
+
+  
+
+  
+
+  min-height: 25cm;
+
+
+  
+
+  
+
+}
+
+#post {
+  min-height: 5cm;
+
+  max-height: 10cm;
+
+  min-width: 15cm;
+
+  max-width: 15cm;
+
+
+
+ margin-left: 8cm;
+ margin-right: 8cm;
+
+ margin-top: 1cm;
+
+ margin-bottom: 1cm;
+  
+
+  
+
+  color: gray;
+
+  border-color: azure;
+
+  border-width: 0.1cm;
+
+
+
+  border: 1px solid gray;
+
+  border-radius: 0.1cm;
+}
+
+
+#author {
+
+  border-bottom: 1px solid;
+
+  text-align: start;
+
+  
+
+  
+
+
+}
+
+#created {
+  margin-left: 0.1cm;
+
+  margin-right: 5.9cm;
+
+  font-size: small;
+}
+
+#when {
+  margin-right: 0.01cm;
+
+  font-size: small;
+
+  
 }

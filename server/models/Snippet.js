@@ -7,7 +7,8 @@ let snippetSchema = new Schema({
     author: String,
     description: String,
     code: String,
-    likes: Number
+    likes: Number,
+    date: String,
 });
 
 module.exports = mongoose.model("Snippet", snippetSchema);

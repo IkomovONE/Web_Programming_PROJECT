@@ -156,13 +156,29 @@ router.post("/api/snippet/", (req, res, next) => {
   Snippet.findOne({subject: req.body.subject}, (err, snippet) => {
       if(err) return next(err);
       if(!snippet) {
+
+        const date = new Date();
+
+        const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+        const year = date.getFullYear();
+        const month = months[date.getMonth()];
+        
+
+        const hour = ("0" + date.getHours()).slice(-2);
+        const minute = ("0" + date.getMinutes()).slice(-2);
+
+        
+                    
+        const formattedDate = `${month} ${date.getDate()}, ${year} at ${hour}:${minute}`;
         
           new Snippet({
             subject: req.body.subject,
             author: req.body.author,
             description: req.body.description,
             code: req.body.code,
-            likes: "0"
+            likes: "0",
+            date: formattedDate,
               
           }).save((err) => {
               if(err) return next(err);
