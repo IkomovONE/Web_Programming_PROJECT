@@ -146,6 +146,64 @@ router.get("/api/snippets", (req, res, next) => {
 
 });
 
+router.get("/api/user/:id", (req, res, next) => {
+
+  
+
+  User.findOne({username: req.params.id}, async (err, user) => {
+    if(err) return next(err);
+    if(!user) {
+
+      return res.json({msg: "No such user"})
+        
+        
+        
+        }
+
+    if(user) {
+
+      return res.json({success: true, username: user.username, email: user.email, admin: user.admin})
+
+
+    }
+
+        
+})
+
+
+
+});
+
+router.get("/api/post/:id", (req, res, next) => {
+
+  
+
+  Snippet.findOne({_id: req.params.id}, async (err, snippet) => {
+    if(err) return next(err);
+    if(!snippet) {
+
+      return res.json({msg: "No such user"})
+        
+        
+        
+        }
+
+    if(snippet) {
+
+      
+
+      return res.json({success: true, id: snippet._id, date: snippet.date, author: snippet.author, subject: snippet.subject, description: snippet.description, code: snippet.code, likes: snippet.likes})
+
+
+    }
+
+        
+})
+
+
+
+});
+
 
 
 

@@ -89,6 +89,11 @@ const Header= () => {
 
       CheckLogin();
 
+
+      const username= window.localStorage.getItem("username")
+
+
+
     
 
 
@@ -144,7 +149,7 @@ const Header= () => {
               >
                 {!auth &&<MenuItem  onClick={handleClose} component={Link} to="/login">Log in</MenuItem>}
                 {!auth &&<MenuItem  onClick={handleClose} component={Link} to="/register">Register</MenuItem>}
-                {auth &&<MenuItem  onClick={handleClose} component={Link} to="/user/profile">My Profile</MenuItem>}
+                {auth &&<MenuItem  onClick={handleClose} component={Link} to={"/profile/"+username} >My Profile</MenuItem>}
                 {auth &&<MenuItem  onClick={handleClose} component={Link} to="/logout">Log Out</MenuItem>}
               </Menu>
             </div>

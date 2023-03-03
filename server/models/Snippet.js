@@ -7,6 +7,7 @@ let snippetSchema = new Schema({
     author: String,
     description: String,
     code: String,
+    codelang: String,
     likes: Number,
     date: String,
 });

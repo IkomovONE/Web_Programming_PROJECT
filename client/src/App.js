@@ -6,8 +6,10 @@ import About  from "./components/About"
 import NewPost  from "./components/NewPost"
 import Login  from "./components/Login"
 import Logout  from "./components/Logout"
+import Profile  from "./components/Profile"
 import MainPage from './components/MainPage';
 import Register  from "./components/Register"
+import Post  from "./components/Post"
 
 
 
@@ -42,7 +44,8 @@ function App() {
           <Route path="/login" element={<Login />}/>
           <Route path="/register" element={<Register />}/>
           <Route path="/logout" element={<Logout />}/>
-
+          <Route path="/profile/:id" element={<Profile />}/>
+          <Route path="/post/:id" element={<Post />}/>
           <Route path="/" element= {<MainPage />}/>
           
           <Route path="/*" element={

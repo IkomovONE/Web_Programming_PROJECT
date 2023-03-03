@@ -253,6 +253,25 @@ h3 {
   font-size: x-large;
 }
 
+#notelabel {
+  text-align: left;
+
+  border: 1px solid;
+
+  border-radius: 0.1cm;
+
+  border-color: gray;
+}
+
+h6 {
+
+  color:  grey;
+
+  font-size: large;
+
+  margin-left: 1cm;
+}
+
 #label {
 
   color: gray;
@@ -315,6 +334,41 @@ input {
 #post {
   min-height: 5cm;
 
+  
+
+  min-width: 25cm;
+
+  max-width: 40cm;
+
+
+
+ 
+
+ margin-top: 1cm;
+
+ margin-bottom: 1cm;
+
+ padding-bottom: 2cm;
+  
+
+  
+
+  color: gray;
+
+  border-color: azure;
+
+  border-width: 0.1cm;
+
+
+
+  border: 1px solid gray;
+
+  border-radius: 0.1cm;
+}
+
+#postLink {
+  min-height: 2cm;
+
   max-height: 10cm;
 
   min-width: 15cm;
@@ -360,18 +414,79 @@ input {
 
 }
 
+#subject {
+
+
+  
+
+  text-align: center;
+
+  width: 10cm;
+
+  font-size: x-large;
+
+  font-weight: 500;
+
+}
+
+#description {
+
+  border-bottom: 1px solid;
+
+  text-align: start;
+
+  margin-left: 2cm;
+
+}
+
 #created {
   margin-left: 0.1cm;
 
-  margin-right: 5.9cm;
+  
 
   font-size: small;
 }
 
 #when {
+
+  margin-left: 5.5cm;
   margin-right: 0.01cm;
 
   font-size: small;
 
   
+}
+
+#whenPost {
+
+  margin-left: 20cm;
+  margin-right: 0.01cm;
+
+  font-size: small;
+
+  
+}
+
+#code {
+
+  min-height: 10cm;
+
+  
+  text-align: left;
+
+  
+
+  margin-left: 2cm;
+  margin-right: 2cm;
+
+  
+
+  
+}
+
+#codeInp {
+
+  min-height: 5cm;
+
+  min-width: 10cm;
 }
