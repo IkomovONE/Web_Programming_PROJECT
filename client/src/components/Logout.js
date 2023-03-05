@@ -7,9 +7,7 @@ function Logout() {
 
 
     window.localStorage.removeItem("token");
-    window.localStorage.removeItem("username");
-    window.localStorage.removeItem("admin");
-    window.localStorage.removeItem("email");
+   
 
     
 

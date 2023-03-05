@@ -52,10 +52,7 @@ function Login() {
             else {
 
                 window.localStorage.setItem("token", json.token);
-                window.localStorage.setItem("username", json.username);
-                window.localStorage.setItem("email", json.email);
-                window.localStorage.setItem("admin", json.admin);
-
+                
                 
                 
 

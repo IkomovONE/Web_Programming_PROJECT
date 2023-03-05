@@ -20,6 +20,8 @@ module.exports = function(req, res, next) {
     jwt.verify(token, process.env.SECRET, (err, user) => {
         if(err) return res.sendStatus(401)
         req.user = user;
+
+        
         
         next();
     });

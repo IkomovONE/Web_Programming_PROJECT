@@ -25,6 +25,8 @@ const Header= () => {
 
   const [auth, setAuth] = React.useState(false);
 
+  const [user, setUser] = React.useState("");
+
 
   const CheckLogin = () => {
 
@@ -49,6 +51,8 @@ const Header= () => {
 
       setAuth(true);
 
+      setUser(json.username);
+
       console.log(auth);
 
     }
@@ -60,8 +64,6 @@ const Header= () => {
 
 
   })
-
-
   };
 
 
@@ -90,7 +92,7 @@ const Header= () => {
       CheckLogin();
 
 
-      const username= window.localStorage.getItem("username")
+      //const username= window.localStorage.getItem("username")
 
 
 
@@ -149,7 +151,7 @@ const Header= () => {
               >
                 {!auth &&<MenuItem  onClick={handleClose} component={Link} to="/login">Log in</MenuItem>}
                 {!auth &&<MenuItem  onClick={handleClose} component={Link} to="/register">Register</MenuItem>}
-                {auth &&<MenuItem  onClick={handleClose} component={Link} to={"/profile/"+username} >My Profile</MenuItem>}
+                {auth &&<MenuItem  onClick={handleClose} component={Link} to={"/profile/"+user} >My Profile</MenuItem>}
                 {auth &&<MenuItem  onClick={handleClose} component={Link} to="/logout">Log Out</MenuItem>}
               </Menu>
             </div>

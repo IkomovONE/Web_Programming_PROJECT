@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
+
 import { useNavigate } from "react-router-dom";
 import SyntaxHighlighter from 'react-syntax-highlighter';
 
@@ -11,82 +12,126 @@ function NewPost() {
 
     
 
+    
+
 
     const submit = (event) => {
         event.preventDefault();
-        
-
 
         
 
-        
+        var token= window.localStorage.getItem("token")
 
 
-        var username= String(window.localStorage.getItem("username"));
 
-        
-
-        var subject= String(event.target[0].value);
-
-        var description= String(event.target[1].value);
-
-        var code_lang= String(event.target[2].value).toLowerCase();
-
-        if (SyntaxHighlighter.supportedLanguages.includes(code_lang)) {
-            
-        }
-        else {
-
-            alert("Your code language is not supported. It will be posted without highlighting.")
-
-        }
-
-        var code= String(event.target[3].value);
-        
-    
-        fetch("/api/snippet", {
+        fetch("/api/token/check", {
             method: "POST",
-
-            body: JSON.stringify({
-                subject: subject,
-                author: username,
-                description: description,
-                codelang: code_lang,
-                code: code,
+      
+            headers: {
+              "authorization": token
+            },
+      
+            body: null,
             
-            }),
-                
-         
+      
+          }).then(response => {
+                      
+            return response.json()}).then(json => {
+      
+          if (json.message== "VERIFIED") {
 
-        }).then(response => {
-                
-            return response.json()})
-        .then(json => {
 
-            if (!json.success) {
-                
-                if (json.msg= "Password incorrect") {
-                    alert("Wrong password")
-                }
+            
 
-                else if (json.msg= "User not found!") {
-                    alert("Invalid credentials!")
-                    
-                }
-                else {
-                    alert("Something else is wrong, error")
-                }
+
+            var username= json.username
+
+            var subject= String(event.target[0].value);
+    
+            var description= String(event.target[1].value);
+    
+            var code_lang= String(event.target[2].value).toLowerCase();
+    
+            if (SyntaxHighlighter.supportedLanguages.includes(code_lang)) {
+                
             }
-
             else {
-
-                navigate("/")
-
-                window.location.reload();
+    
+                alert("Your code language is not supported. It will be posted without highlighting.")
+    
             }
-        });
+    
+            var code= String(event.target[3].value);
+            
+        
+            fetch("/api/snippet", {
+                method: "POST",
+    
+                body: JSON.stringify({
+                    subject: subject,
+                    author: username,
+                    description: description,
+                    codelang: code_lang,
+                    code: code,
+                
+                }),
+                    
+             
+    
+            }).then(response => {
+                    
+                return response.json()})
+            .then(json => {
+    
+                if (!json.success) {
+                    
+                    if (json.msg= "Password incorrect") {
+                        alert("Wrong password")
+                    }
+    
+                    else if (json.msg= "User not found!") {
+                        alert("Invalid credentials!")
+                        
+                    }
+                    else {
+                        alert("Something else is wrong, error")
+                    }
+                }
+    
+                else {
+    
+                    navigate("/")
+    
+                    window.location.reload();
+                }
+            });
+    
 
-    }
+
+      
+            
+      
+          }
+      
+          else {
+            navigate("/")
+          }
+        });
+        
+
+
+        
+
+        
+
+
+        
+
+       
+    
+
+}
+    
 
 
     function handleEnter(event) {
@@ -141,6 +186,8 @@ function NewPost() {
                 <input id= "code-lang" type="text" name="code-lang"></input>
                 <p></p>
 
+                
+
                 <label id= "label" >Code</label>
 
                 <textarea ref={reference} id= "codeInp" type="text" name="code" rows="12" cols="12" onKeyDown={handleEnter}></textarea>
@@ -174,7 +221,7 @@ function NewPost() {
 
 
     )
-}
+    }
 
 
 

@@ -10,6 +10,7 @@ let snippetSchema = new Schema({
     codelang: String,
     likes: Number,
     date: String,
+    comments: Array,
 });
 
 module.exports = mongoose.model("Snippet", snippetSchema);

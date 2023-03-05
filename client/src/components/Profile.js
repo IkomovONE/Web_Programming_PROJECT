@@ -17,6 +17,7 @@ function Profile({username}) {
     
 
     useEffect(() => {
+      window.scroll(0,0)
         fetch("/api/user/"+id)
         .then(response => response.json())
         .then(json => setData(json))
