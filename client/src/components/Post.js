@@ -19,6 +19,7 @@ const Post = () => {
 
     const [auth, setAuth] = React.useState(false);
     const [user, setUser] = React.useState("");
+    const [admin, setAdmin] = React.useState(false);
     const [height, setHeight] = useState(0);
     const appRef = useRef(null);
 
@@ -52,6 +53,8 @@ const Post = () => {
           var username= json.username;
 
           setUser(username);
+
+          setAdmin(json.admin)
     
           
     
@@ -147,9 +150,14 @@ const Post = () => {
 
                         <a>|</a>
 
-                        {user===data.author && <Button component={Link} to={"/editpost/"+data.id} id="created"> Edit this post</Button>}
+                        {user===data.author || admin === true ? <Button component={Link} to={"/editpost/"+data.id} id="created"> Edit this post</Button> : null}
 
-                        
+                        <a>|</a>
+
+
+                        {user===data.author || admin === true ? <Button component={Link} to={"/deletepost/"+data.id} id="created"> Delete this post</Button> : null}
+
+
                         
 
                         <a id= "whenPost">Last edited: {data.date}</a>

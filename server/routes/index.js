@@ -343,6 +343,80 @@ router.post("/api/editsnippet", (req, res, next) => {
 
 })
 
+router.post("/api/snippet/delete", (req, res, next) => {
+
+  
+
+  const result= Snippet.deleteOne({_id: req.body.postID}, function (err, snippet) {
+    if (err){
+        console.log(err)
+    }
+    else{
+        console.log("Deleted : ", snippet);
+        return res.json({success: true});
+    }
+
+  
+
+});
+});
+
+router.post("/api/comment/delete", (req, res, next) => {
+
+
+  Snippet.findOne({_id: req.body.postID}, async (err, snippet) => {
+    if(err) return next(err);
+    if(snippet) {
+
+      
+
+      var comments= snippet.comments
+
+      
+
+      comments.forEach((comment)=>{
+
+
+        if(comment.CommentId== req.body.CommentId) {
+
+        
+          comments.remove(comment)
+
+           
+
+        }
+
+      })
+
+      
+    
+
+      const updateDocument = {
+        $set: {
+          subject: snippet.subject,
+          author: snippet.author,
+          description: snippet.description,
+          code: snippet.code,
+          likes: snippet.likes,
+          date: snippet.date,
+          comments: comments,
+        },
+     };
+
+     const result= await Snippet.updateOne({_id: req.body.postID}, updateDocument)
+
+        return res.json({success: true});
+
+      }
+      else {
+        return res.status(403).send("ERROR");
+
+    }
+  })
+      
+   
+
+});
 
 
 router.post("/api/snippet/", (req, res, next) => {

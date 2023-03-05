@@ -8,6 +8,8 @@ const Comment = ({comment}) => {
     
     const [user, setUser] = React.useState("");
 
+    const [admin, setAdmin] = React.useState(false);
+
     const {id}= useParams()
 
 
@@ -40,6 +42,7 @@ const Comment = ({comment}) => {
      
 
       setUser(json.username);
+      setAdmin(json.admin);
 
       
 
@@ -68,7 +71,15 @@ const Comment = ({comment}) => {
 
                 <a>|</a>
 
-                {user===comment.author && <Button component={Link} to={"/editComment/"+id+"/"+comment.CommentId+"/"+comment.author+"/"+comment.content} id="created"> Edit this comment</Button>}
+                {user===comment.author || admin === true ? <Button component={Link} to={"/editComment/"+id+"/"+comment.CommentId+"/"+comment.author+"/"+comment.content} id="created"> Edit this comment</Button> : null}
+
+                <a>|</a>
+
+                {user===comment.author || admin === true ? <Button component={Link} to={"/deletecomment/"+id+"/"+comment.CommentId} id="created"> Delete this comment</Button> : null}
+
+
+
+
 
                 <a id= "whenComment">Last edited: {comment.date}</a>
                 
