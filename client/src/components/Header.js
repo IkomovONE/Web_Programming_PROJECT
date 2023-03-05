@@ -21,6 +21,9 @@ import {Link} from 'react-router-dom'
 import {Link as RouterLink} from "react-router-dom"
 
 
+//importing necessary libraries
+
+
 const Header= () => {
 
   const { t, i18n } = useTranslation();
@@ -28,16 +31,29 @@ const Header= () => {
         i18n.changeLanguage(lang)
     }
 
+    //setting language translation function
+
+
   const [auth, setAuth] = React.useState(false);
 
   const [user, setUser] = React.useState("");
 
+  //setting necessary variables
+
 
   const CheckLogin = () => {
 
+    //function that checks login by sending request to the server, with token
+
     var token= window.localStorage.getItem("token")
 
+    //getting token
+
     fetch("/api/token/check", {
+
+      //sending post request to check if user is logged in
+
+      
       method: "POST",
 
       headers: {
@@ -60,16 +76,22 @@ const Header= () => {
 
       console.log(auth);
 
+      //setting auth state as true and user info
+
     }
 
     else {
       setAuth(false);
+
+      //setting auth as false.
     }
 
 
 
   })
   };
+
+  //auth is used for the appearing buttons!
 
 
 
@@ -93,13 +115,15 @@ const Header= () => {
         setAnchorEl(null);
       };
 
+      //functions taken from the official Materialize UI website. They handle manu on the user profile button
+
 
       CheckLogin();
 
+      //executing function
 
-      //const username= window.localStorage.getItem("username")
 
-
+      
 
     
 
@@ -185,6 +209,9 @@ const Header= () => {
 
 
     )
+
+
+    //returning header object. auth is used here to determine whether user is logged in and then either show buttons or not.
 
 
 

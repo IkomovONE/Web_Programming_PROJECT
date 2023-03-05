@@ -3,6 +3,9 @@ import { useNavigate } from "react-router-dom";
 import {useState, useEffect, useRef} from 'react'
 import { useTranslation } from 'react-i18next';
 
+
+//importing necessary libraries
+
 function Register() {
 
 

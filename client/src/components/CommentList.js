@@ -2,13 +2,19 @@ import Comment from "./Comment"
 import {useParams} from 'react-router-dom'
 import {useState, useEffect} from 'react'
 
+//importing necessary libraries
+
 const CommentList = () => {
+
+    //commentList component
 
     const [data, setData] = useState([])
 
     const {id} = useParams()
 
     const [dataType, setDataType] = useState("CommentList")
+
+    //setting necessary states and variables
 
 
     useEffect(() => {
@@ -20,6 +26,8 @@ const CommentList = () => {
 
             
             setData(json.comments)
+
+            //using useEffect for fetching the post comments, get request
 
 
 
@@ -47,5 +55,7 @@ const CommentList = () => {
         </div>
     )
 }
+
+//returning the comments as array of Comment component elemets
 
 export default CommentList

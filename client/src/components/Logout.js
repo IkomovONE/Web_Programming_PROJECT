@@ -2,6 +2,9 @@
 import Button from '@mui/material/Button';
 import { useTranslation } from 'react-i18next';
 
+
+//importing necessary libraries
+
 function Logout() {
 
     const { t, i18n } = useTranslation();
@@ -9,10 +12,15 @@ function Logout() {
         i18n.changeLanguage(lang)
     }
 
+     //setting language translation function
+
+
     
 
 
     window.localStorage.removeItem("token");
+
+    //removing token from local storage
    
 
     
@@ -52,6 +60,8 @@ function Logout() {
 
 
     )
+
+    //returning "logged out"
 }
 
 

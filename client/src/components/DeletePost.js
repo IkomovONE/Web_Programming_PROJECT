@@ -4,6 +4,8 @@ import { useTranslation } from 'react-i18next';
 import {useParams} from 'react-router-dom'
 import { useNavigate } from "react-router-dom";
 
+//importing necessary libraries
+
 
 function DeletePost() {
 
@@ -12,26 +14,42 @@ function DeletePost() {
         i18n.changeLanguage(lang)
     }
 
-   
+   //setting language translation function
+
 
     const navigate = useNavigate();
+    
+    //implementing navigate feature
 
 
     window.scroll(0,0)
+
+    //scroll page to beginning
+
 
     const [data, setData] = useState({})
 
     const {id} = useParams()
 
     const [dataType, setDataType] = useState("post")
+
+    //setting states and variables
+   
+
    
 
 
     function fetchPost () {
 
+        //function for fetching the post comment
+
+
         useEffect(() => {
 
             window.scroll(0,0)
+
+            //scrolling page
+    
     
             
             
@@ -42,6 +60,9 @@ function DeletePost() {
                 
     
                 setData(json)
+
+                //get request, setting the post as state
+
 
                 
     
@@ -66,6 +87,9 @@ function DeletePost() {
 
     const submitNo = (event) => {
 
+        //function in case "no" button is pressed. Returns to post page
+
+
 
         navigate("/post/"+id)
 
@@ -79,13 +103,20 @@ function DeletePost() {
     const submitYes = (event) => {
         event.preventDefault();
 
+        //function for "yes" button. Deletes comment
+
         
 
         var token= window.localStorage.getItem("token")
 
+        //get token from local storage
+
+
 
 
         fetch("/api/token/check", {
+
+            //function that checks login by sending request to the server, with token
             method: "POST",
       
             headers: {
@@ -105,6 +136,9 @@ function DeletePost() {
                 
                 if (json.username != data.author) {
 
+                    //if user is not author, and not admin, naviagates to login page
+
+
                     setData({})
                 
                     navigate("/login")
@@ -114,6 +148,8 @@ function DeletePost() {
                 else {
 
                     fetch("/api/snippet/delete", {
+
+                        //post request to delete post 
                         method: "POST",
         
                         body: JSON.stringify({
@@ -130,22 +166,18 @@ function DeletePost() {
         
                         if (!json.success) {
                         
-                            if (json.msg= "Password incorrect") {
-                                alert("Wrong password")
+                            if (json.msg= "ERROR") {
+                                alert("error")
                             }
         
-                            else if (json.msg= "User not found!") {
-                                alert("Invalid credentials!")
                             
-                            }
-                            else {
-                                alert("Something else is wrong, error")
-                            }
                         }
         
                         else {
         
                             navigate("/")
+
+                            //navigating to main page if successfull
         
                             window.location.reload();
                         }
@@ -159,6 +191,8 @@ function DeletePost() {
            else {
 
             fetch("/api/snippet/delete", {
+
+                //same post request but for admin
                 method: "POST",
     
                 body: JSON.stringify({
@@ -175,22 +209,19 @@ function DeletePost() {
     
                 if (!json.success) {
                     
-                    if (json.msg= "Password incorrect") {
-                        alert("Wrong password")
+                    if (json.msg= "ERROR") {
+                        alert("error")
                     }
     
-                    else if (json.msg= "User not found!") {
-                        alert("Invalid credentials!")
-                        
-                    }
-                    else {
-                        alert("Something else is wrong, error")
-                    }
+                    
                 }
     
                 else {
     
                     navigate("/")
+
+                    //navigating to post page if successfull
+    
     
                     window.location.reload();
                 }
@@ -220,7 +251,10 @@ function DeletePost() {
 
 
 fetchPost();
+
+//executing function 
     
+
 
 
    
@@ -281,6 +315,8 @@ fetchPost();
 
 
     )
+
+    //returning window that asks if the user is sure or not
     }
 
 

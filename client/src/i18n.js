@@ -30,3 +30,7 @@ i18n
 
 
 export default i18n;
+
+
+
+//ATTENTION. This file is taken from i18n website, as recommended, for the translation library to work

@@ -5,6 +5,8 @@ import {useParams} from 'react-router-dom'
 import { useNavigate } from "react-router-dom";
 import SyntaxHighlighter from 'react-syntax-highlighter';
 
+//importing necessary libraries
+
 function EditPost() {
 
   const { t, i18n } = useTranslation();
@@ -12,12 +14,22 @@ function EditPost() {
         i18n.changeLanguage(lang)
     }
 
+    //setting language translation function
+
     const reference = useRef(null);
 
     const navigate = useNavigate();
 
+    //implementing navigate feature
+
+
+
 
     window.scroll(0,0)
+
+    //scrolling page
+
+   
 
     const [data, setData] = useState({})
 
@@ -26,12 +38,18 @@ function EditPost() {
     const [dataType, setDataType] = useState("post")
     const [loading, setLoading] = useState(true);
 
+    //setting variables
+
 
     function fetchPost () {
+
+      //funtion for fetching the post
 
         useEffect(() => {
 
             window.scroll(0,0)
+
+            //scrolling page
     
             
             
@@ -44,6 +62,8 @@ function EditPost() {
                 setData(json)
 
                 setLoading(false);
+
+                //get request to get post info, then setting the info as state. also using loading state so that page is not loaded before and data is fetched
     
     
                 
@@ -71,15 +91,21 @@ function EditPost() {
 
 
     const submit = (event) => {
+
+      //function for submitting the new data
         event.preventDefault();
 
         
 
         var token= window.localStorage.getItem("token")
 
+        //getting token
+
 
 
         fetch("/api/token/check", {
+
+          //function that checks login by sending request to the server, with token
             method: "POST",
       
             headers: {
@@ -106,17 +132,21 @@ function EditPost() {
             var subject= String(event.target[0].value);
     
             var description= String(event.target[1].value);
+
+            
+            var code= String(event.target[2].value);
+
+
+            //getting some variables from the form, the new data user entered is stored here
     
            
-    
-            
-    
-            var code= String(event.target[2].value);
 
             
             
         
             fetch("/api/editsnippet", {
+
+              //function for editing the snippet
                 method: "POST",
     
                 body: JSON.stringify({
@@ -138,22 +168,18 @@ function EditPost() {
     
                 if (!json.success) {
                     
-                    if (json.msg= "Password incorrect") {
-                        alert("Wrong password")
+                    if (json.msg= "ERROR") {
+                        alert("error")
                     }
     
-                    else if (json.msg= "User not found!") {
-                        alert("Invalid credentials!")
-                        
-                    }
-                    else {
-                        alert("Something else is wrong, error")
-                    }
+                    
                 }
     
                 else {
     
                     navigate("/post/"+data.id)
+
+                    //navigates back to post if successfull
     
                     window.location.reload();
                 }
@@ -179,6 +205,8 @@ function EditPost() {
 }
 
 fetchPost();
+
+//executing the function
     
 
 
@@ -198,6 +226,11 @@ fetchPost();
 
     }
 
+    //function that's used to handle enter key pressed when writing text.
+
+    
+
+
     var Incode= data.code
 
 
@@ -214,6 +247,9 @@ fetchPost();
     const [description, setDescription] = useState(data.description);
 
 
+    //setting more variables to get new contents of the post from the html form
+
+
     const handleChange = (event) => {
         setCode(event.target.value);
       };
@@ -225,11 +261,15 @@ fetchPost();
       const handleChangeD = (event) => {
         setDescription(event.target.value);
       };
+
+      //funcitons for handling the change in the input fields
     
       
       if (loading) {
         return <p></p>;
       }
+
+      //return this if the doc is loading 
 
 
     return (
@@ -294,6 +334,8 @@ fetchPost();
 
 
     )
+
+    //returning the main post editing form
     }
 
 

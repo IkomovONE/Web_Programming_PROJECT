@@ -1,6 +1,11 @@
 import PostLink from "./PostLink"
 
+
+//importing necessary component
+
 const List = ({posts}) => {
+
+    //list component
     return (
         <div id="list">
             
@@ -11,5 +16,7 @@ const List = ({posts}) => {
         </div>
     )
 }
+
+//returning a list with postLink components as elements of posts array
 
 export default List

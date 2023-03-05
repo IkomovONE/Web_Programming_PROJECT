@@ -5,12 +5,18 @@ import {useParams} from 'react-router-dom'
 import { useTranslation } from 'react-i18next';
 
 
+//importing necessary libraries
+
 const Comment = ({comment}) => {
+
+  //function for comments
 
   const { t, i18n } = useTranslation();
     const changeLanguage = (lang) => {
         i18n.changeLanguage(lang)
     }
+
+    //setting language function
 
     
     const [user, setUser] = React.useState("");
@@ -19,6 +25,8 @@ const Comment = ({comment}) => {
 
     const {id}= useParams()
 
+    //setting necessary variables. Id is taken from params, other variables are states
+
 
     
 
@@ -26,6 +34,8 @@ const Comment = ({comment}) => {
 
 
   const CheckLogin = () => {
+
+    //function that checks login by sending request to the server, with token
 
     var token= window.localStorage.getItem("token")
 
@@ -51,6 +61,9 @@ const Comment = ({comment}) => {
       setUser(json.username);
       setAdmin(json.admin);
 
+
+      //sending post request, and if token is verified, set the user's username and admin status
+
       
 
     }
@@ -65,6 +78,8 @@ const Comment = ({comment}) => {
   };
 
   CheckLogin();
+
+  //executing checklogin
    
 
     return (
@@ -107,6 +122,8 @@ const Comment = ({comment}) => {
 
         
     )
+
+    //retuning comment object with buttons that only appear if user is the author or if admin
 }
 
 export default Comment

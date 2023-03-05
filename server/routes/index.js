@@ -14,11 +14,8 @@ const Snippet = require("../models/Snippet");
 const User = require("../models/User");
 const { connect } = require("http2");
 
-/* GET home page. */
-/*router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
-*/
+//importing necessary libraries
+
 router.use(express.urlencoded({
     extended: true
   }));
@@ -31,16 +28,28 @@ router.use(cookieParser());
 
 router.use(express.json({inflate: true, strict: false, type: () => { return true; } }));
 
+//Commands for better encoding
+
 
 router.post("/api/token/check", validateToken, (req, res) => {
+
+  //token check post request, used in React client application for checking if user is logged in
+
+  //ValidateToken function is used to check if token is legit. If the token is correct, the function executes next(), meaning that the code below will continue to execute
 
 
   const user= req.user;
 
+  //setting user
+
   User.findOne({email: user.email}, (err, user) =>{
+
+    //Using database to find the user so that his info could be passed as response
     if(user) {
 
       res.json({message: "VERIFIED", username: user.username, email: user.email, admin: user.admin})
+
+      //sending response with message and some information about user
 
     }
   }
@@ -57,18 +66,25 @@ router.post("/api/token/check", validateToken, (req, res) => {
 
 
 router.post("/api/user/login", 
-  //body("email").trim().escape(),
-  //body("password").escape(),
+//post request for logging in 
   (req, res, next) => {
 
     
     
     User.findOne({email: req.body.email}, (err, user) =>{
+
+      //Asking database to find user
     if(err) {res.send("User error", req.body)};
+
+    //returns error if db has error
     
     if(user) {
       bcrypt.compare(req.body.password, user.password, (err, isMatch) => {
+
+        //comparing password if the user is found
         if(err) {};
+
+        //do nothing if error
         if(isMatch) {
           const jwtPayload = {
             id: user._id,
@@ -85,12 +101,16 @@ router.post("/api/user/login",
               res.json({success: true, token: token, username: user.username, email: user.email, admin: user.admin});
             }
           );
+          //if password is correct, sign him in, and send back the token and his information
         }
         if(!isMatch) {res.status(403).json({msg: "Password incorrect", user: req.body})}
+        //send "password incorrect if password didn't match"
       })
     }
     else {
       return res.status(403).json({msg: "User not found!", user: req.body});
+
+      //Pass user not found if no user found
     }
 
     })
@@ -103,13 +123,19 @@ body("email").isLength({min: 5}).trim().escape(),
 body("password").isLength({min: 7}),
 async (req, res) => {
 
+  //Post request for registering user
+
   const errors = validationResult(req);
   if(!errors.isEmpty()) {
     return res.status(400).json({errors: errors.array()});
     }
 
+    //show errors if there are problems with password or email
+
 
     User.findOne({email: req.body.email}, async (err, user) => {
+
+      //asking db to find the suggested user, so that no dublicate is created
         if(err) return next(err);
         if(!user) {
             
@@ -123,12 +149,16 @@ async (req, res) => {
             }).save((err) => {
                 if (err) return next(err)
 
+                //if no user found, create new user and save to db
+
                 console.log({
                     "email": req.body.email,
                     "password": req.body.password
                 })
             
                 return res.json({success: true})
+
+                //return success:true
             });
 
         }
@@ -138,6 +168,8 @@ async (req, res) => {
 
             return res.status(403).json({msg: "User already exists!"})
 
+            //show error "user already exists"
+
         }
     })
 
@@ -145,6 +177,8 @@ async (req, res) => {
 
 
 router.get("/api/snippets", (req, res, next) => {
+
+  //get request for all of the snippets, used on the main page
 
   Snippet.find({}, (err, snippets) => {
         
@@ -156,15 +190,21 @@ router.get("/api/snippets", (req, res, next) => {
     }
 })
 
+//returns an array with all of the snippets stored
+
 
 
 });
 
 router.get("/api/user/:id", (req, res, next) => {
 
+  //get request to get the user with desired id
+
   
 
   User.findOne({username: req.params.id}, async (err, user) => {
+
+    //asking db to find user
     if(err) return next(err);
     if(!user) {
 
@@ -184,11 +224,17 @@ router.get("/api/user/:id", (req, res, next) => {
         
 })
 
+//finds user and sends his info to the client, or sends error if user not found
+
+
+
 
 
 });
 
 router.get("/api/post/:id", (req, res, next) => {
+
+  //get request to find post using desired id
 
   
 
@@ -196,17 +242,13 @@ router.get("/api/post/:id", (req, res, next) => {
     if(err) return next(err);
     if(!snippet) {
 
-      return res.json({msg: "No such user"})
+      return res.json({msg: "No such snippet"})
         
         
         
         }
 
     if(snippet) {
-
-      
-
-      
 
       
 
@@ -218,12 +260,17 @@ router.get("/api/post/:id", (req, res, next) => {
         
 })
 
+//asking db to find the post, returns post info or error
+
 
 
 });
 
 
 router.post("/api/editsnippet", (req, res, next) => {
+
+
+  //post request to edit desired snippet
 
   
 
@@ -242,6 +289,9 @@ router.post("/api/editsnippet", (req, res, next) => {
                     
   const formattedDate = `${month} ${date.getDate()}, ${year} at ${hour}:${minute}`;
 
+
+  //Creating date object which shows today's date and time, then modifying it to a desired format
+
   
   
 
@@ -250,6 +300,8 @@ router.post("/api/editsnippet", (req, res, next) => {
 
 
   Snippet.findOne({_id: req.body.postID}, async (err, snippet) => {
+
+    //asking db to find desired snippet by id
       if(err) return next(err);
       if(snippet) {
         
@@ -269,9 +321,13 @@ router.post("/api/editsnippet", (req, res, next) => {
           },
        };
 
+       //create an updated document if the snippet is found 
+
        
 
        const result= await Snippet.updateOne({_id: req.body.postID}, updateDocument)
+
+       //asking db to update the snippet with the new info model
 
           return res.json({success: true});
 
@@ -281,6 +337,8 @@ router.post("/api/editsnippet", (req, res, next) => {
 
       }
     })
+
+    //sending success:true if successfull or error if opposite
         
           
 
@@ -293,15 +351,21 @@ router.post("/api/editsnippet", (req, res, next) => {
 
 router.post("/api/snippet/delete", (req, res, next) => {
 
+  //post request to delete post
+
   
 
   const result= Snippet.deleteOne({_id: req.body.postID}, function (err, snippet) {
+
+    //asking db to delete snippet 
     if (err){
         console.log(err)
     }
     else{
         console.log("Deleted : ", snippet);
         return res.json({success: true});
+
+        //returning string and sending response
     }
 
   
@@ -311,8 +375,12 @@ router.post("/api/snippet/delete", (req, res, next) => {
 
 router.post("/api/comment/delete", (req, res, next) => {
 
+  //post request to delete desired comment
+
 
   Snippet.findOne({_id: req.body.postID}, async (err, snippet) => {
+
+    //asking db to find snippet where the comment is posted
     if(err) return next(err);
     if(snippet) {
 
@@ -334,6 +402,8 @@ router.post("/api/comment/delete", (req, res, next) => {
 
         }
 
+        //extracting comment from post and removing it if it's found
+
       })
 
       
@@ -351,6 +421,8 @@ router.post("/api/comment/delete", (req, res, next) => {
         },
      };
 
+     //creating the updated document for updating post info
+
      const result= await Snippet.updateOne({_id: req.body.postID}, updateDocument)
 
         return res.json({success: true});
@@ -361,6 +433,8 @@ router.post("/api/comment/delete", (req, res, next) => {
 
     }
   })
+
+  //asking db to update snippet. if successfull, send success, if not, send error
       
    
 
@@ -369,9 +443,13 @@ router.post("/api/comment/delete", (req, res, next) => {
 
 router.post("/api/snippet/", (req, res, next) => {
 
+  //post request to creating a new snippet(post)
+
 
 
   Snippet.findOne({subject: req.body.subject}, (err, snippet) => {
+
+    //asking db to find the similar snippet subject, because same subjects not allowed
       if(err) return next(err);
       if(!snippet) {
 
@@ -387,8 +465,14 @@ router.post("/api/snippet/", (req, res, next) => {
         const minute = ("0" + date.getMinutes()).slice(-2);
 
         
+
+        
                     
         const formattedDate = `${month} ${date.getDate()}, ${year} at ${hour}:${minute}`;
+
+
+        //Creating date object which shows today's date and time, then modifying it to a desired format
+
         
           new Snippet({
             subject: req.body.subject,
@@ -411,9 +495,14 @@ router.post("/api/snippet/", (req, res, next) => {
 
 
   });
+  //Creating a new snippet with setting up info, then saving it to db
+  //didn't have enough time to implement "likes" feature, unfortunately :(
+  
 });
 
 router.post("/api/comment", async (req, res, next) => {
+
+  //post request for writing a new comment
 
   const date = new Date();
 
@@ -430,11 +519,16 @@ router.post("/api/comment", async (req, res, next) => {
                     
   const formattedDate = `${month} ${date.getDate()}, ${year} at ${hour}:${minute}`;
 
+  //Creating date object which shows today's date and time, then modifying it to a desired format
+
+
   
 
 
 
   Snippet.findOne({_id: req.body.postID}, async (err, snippet) => {
+
+    //asking db to find snippet
       if(err) return next(err);
       if(snippet) {
 
@@ -446,6 +540,8 @@ router.post("/api/comment", async (req, res, next) => {
           date: formattedDate,
           CommentId: req.body.CommentID,
         }
+
+        //creating new comment model
 
 
         
@@ -476,6 +572,8 @@ router.post("/api/comment", async (req, res, next) => {
 
       }
     })
+
+    //updating snippet with the new document model which includes new comment
         
           
 
@@ -487,6 +585,8 @@ router.post("/api/comment", async (req, res, next) => {
 
 
 router.post("/api/editComment", async (req, res, next) => {
+
+  //post request for editing desired comment
 
     const date = new Date();
   
@@ -502,12 +602,18 @@ router.post("/api/editComment", async (req, res, next) => {
           
                       
     const formattedDate = `${month} ${date.getDate()}, ${year} at ${hour}:${minute}`;
+
+    //Creating date object which shows today's date and time, then modifying it to a desired format
+
+
   
     
   
   
   
     Snippet.findOne({_id: req.body.postID}, async (err, snippet) => {
+
+      //asking db to find post where the comment is
         if(err) return next(err);
         if(snippet) {
 
@@ -526,7 +632,7 @@ router.post("/api/editComment", async (req, res, next) => {
 
             if(comment.CommentId== req.body.CommentId) {
 
-              console.log("It finds")
+              
 
 
 
@@ -548,6 +654,8 @@ router.post("/api/editComment", async (req, res, next) => {
             }
 
           })
+
+          //extracting comment: removing the desired comment info and adding a new comment to the array
 
           
   
@@ -577,6 +685,8 @@ router.post("/api/editComment", async (req, res, next) => {
   
         }
       })
+
+      //updating snippet with new document with updated comments
           
             
   
@@ -594,3 +704,5 @@ router.post("/api/editComment", async (req, res, next) => {
 
 
 module.exports = router;
+
+//exporting router

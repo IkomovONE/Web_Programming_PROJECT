@@ -4,15 +4,21 @@ import { useTranslation } from 'react-i18next';
 import {useParams} from 'react-router-dom'
 import { useNavigate } from "react-router-dom";
 
+//importing necessary libraries
+
 function EditComment() {
     const { t, i18n } = useTranslation();
     const changeLanguage = (lang) => {
         i18n.changeLanguage(lang)
     }
 
+    //setting language translation function
+
     const reference = useRef(null);
 
     const {id, CommentID, author, content} = useParams()
+
+    //setting variables
 
     
 
@@ -22,8 +28,12 @@ function EditComment() {
 
     const navigate = useNavigate();
 
+    //implementing navigate feature
+
 
     window.scroll(0,0)
+
+    //scrolling page
 
    
 
@@ -38,16 +48,10 @@ function EditComment() {
 
             window.scroll(0,0)
 
-            
-
+            //scrolling page
 
             
     
-            
-            
-            
-
-           
         }, [dataType])
 
         
@@ -71,6 +75,8 @@ function EditComment() {
 
 
         fetch("/api/token/check", {
+
+            //function that checks login by sending request to the server, with token
             method: "POST",
       
             headers: {
@@ -94,12 +100,16 @@ function EditComment() {
 
             var Newcontent= String(event.target[0].value);
 
-            console.log(CommentID)
+            //getting new content for the comment
+
+            
     
            
     
         
             fetch("/api/editComment", {
+
+                //post request, for setting new comment
                 method: "POST",
     
                 body: JSON.stringify({
@@ -123,22 +133,18 @@ function EditComment() {
     
                 if (!json.success) {
                     
-                    if (json.msg= "Password incorrect") {
-                        alert("Wrong password")
+                    if (json.msg= "ERROR") {
+                        alert("error")
                     }
     
-                    else if (json.msg= "User not found!") {
-                        alert("Invalid credentials!")
-                        
-                    }
-                    else {
-                        alert("Something else is wrong, error")
-                    }
+                    
                 }
     
                 else {
     
                     navigate("/post/"+id)
+                    //navigating to post if successfull
+        
     
                     window.location.reload();
                 }
@@ -183,6 +189,9 @@ function EditComment() {
 
     }
 
+
+    //function that's used to handle enter key pressed when writing text.
+
     
 
 
@@ -201,6 +210,8 @@ function EditComment() {
       const handleChangeD = (event) => {
         setDescription(event.target.value);
       };
+
+      //function for handling change in content
     
       
       
@@ -252,6 +263,8 @@ function EditComment() {
 
 
     )
+
+    //returning a form for editing the comment
     }
 
 

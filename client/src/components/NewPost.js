@@ -4,6 +4,10 @@ import { useRef, useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import SyntaxHighlighter from 'react-syntax-highlighter';
 
+
+
+//importing necessary libraries
+
 function NewPost() {
 
     const reference = useRef(null);

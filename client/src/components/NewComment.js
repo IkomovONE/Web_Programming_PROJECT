@@ -4,6 +4,9 @@ import { useNavigate } from "react-router-dom";
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { useTranslation } from 'react-i18next';
 
+
+//importing necessary libraries
+
 function NewComment({data}) {
 
     const { t, i18n } = useTranslation();

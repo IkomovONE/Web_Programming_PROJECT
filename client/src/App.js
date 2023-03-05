@@ -17,10 +17,15 @@ import Register  from "./components/Register"
 import Post  from "./components/Post"
 
 
+//importing necessary elements and React components made by me
+
+
 
 
 
 function App() {
+
+  //function setting the main app
 
   
 
@@ -32,9 +37,13 @@ function App() {
     const appHeight = appRef.current.scrollHeight;
     setHeight(appHeight);
   }, []);
+
+  //Setting the height of the app using useEffect and useState
   
 
   return (
+
+    
     
     <Router>
       <div className="App" ref={appRef} style={{ minheight: `${height+150}px` }}>
@@ -93,4 +102,8 @@ function App() {
   );
 }
 
+//returning necessary route elements, as well as the app header
+
 export default App;
+
+//exporting the "app"

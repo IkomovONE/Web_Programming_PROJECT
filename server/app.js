@@ -10,6 +10,8 @@ var indexRouter = require('./routes/index');
 
 var app = express();
 
+//setting express app and importing necessary stuff
+
 
 
 const mongoDB = "mongodb://localhost:27017/testdb";
@@ -18,6 +20,10 @@ mongoose.Promise = Promise;
 const db = mongoose.connection;
 
 db.on("error", console.error.bind(console, "MongoDB connection error"));
+
+//Setting the database, connecting to address of testDB
+
+
 
 
 
@@ -28,9 +34,13 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-//app.use(express.static(path.join(__dirname, 'public')));
+
+//Setting encoders for better responses
+
 
 app.use('/', indexRouter);
+
+//Setting to use "/" route
 
 
 
@@ -48,5 +58,7 @@ else if (process.env.NODE_ENV === "development" ) {
     app.use(cors(corsOptions));
 
 }
+
+//Setting up the app for production and developent processes
 
 module.exports = app;

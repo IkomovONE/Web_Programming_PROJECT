@@ -11,7 +11,7 @@ import NewComment from './NewComment'
 import { useTranslation } from 'react-i18next';
 
 
-
+//importing necessary libraries
 
 
 const Post = () => {

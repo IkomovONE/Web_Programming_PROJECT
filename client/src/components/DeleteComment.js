@@ -4,6 +4,8 @@ import { useTranslation } from 'react-i18next';
 import {useParams} from 'react-router-dom'
 import { useNavigate } from "react-router-dom";
 
+//importing necessary libraries
+
 
 function DeleteComment() {
 
@@ -12,26 +14,38 @@ function DeleteComment() {
         i18n.changeLanguage(lang)
     }
 
+    //setting language translation function
+
    
 
     const navigate = useNavigate();
 
+    //implementing navigate feature
+
 
     window.scroll(0,0)
+
+    //scroll page to beginning
 
     const [data, setData] = useState({})
 
     const {id, CommentID} = useParams()
 
     const [dataType, setDataType] = useState("post")
+
+    //setting states and variables
    
 
 
     function fetchPost () {
 
+        //function for fetching the post comment
+
         useEffect(() => {
 
             window.scroll(0,0)
+
+            //scrolling page
     
             
             
@@ -46,6 +60,8 @@ function DeleteComment() {
                     if (comment.CommentId== CommentID) {
 
                         setData(comment)
+
+                        //get request, setting the comment as state
 
                     }
                     
@@ -78,6 +94,8 @@ function DeleteComment() {
 
     const submitNo = (event) => {
 
+        //function in case "no" button is pressed. Returns to post page
+
 
         navigate("/post/"+id)
 
@@ -89,15 +107,21 @@ function DeleteComment() {
 
 
     const submitYes = (event) => {
+
+        //function for "yes" button. Deletes comment
         event.preventDefault();
 
         
 
         var token= window.localStorage.getItem("token")
 
+        //get token from local storage
+
 
 
         fetch("/api/token/check", {
+
+            //function that checks login by sending request to the server, with token
             method: "POST",
       
             headers: {
@@ -119,6 +143,8 @@ function DeleteComment() {
 
                 if (json.username != data.author) {
 
+                    //if user is not author, and not admin, naviagates to login page
+
                     setData({})
                 
                     navigate("/login")
@@ -126,6 +152,8 @@ function DeleteComment() {
                 }
 
                 else {
+
+                    //post request to delete comment 
 
                     fetch("/api/comment/delete", {
                         method: "POST",
@@ -146,17 +174,12 @@ function DeleteComment() {
         
                         if (!json.success) {
                         
-                            if (json.msg= "Password incorrect") {
-                                alert("Wrong password")
+                            if (json.msg= "ERROR") {
+                                alert("Error occured")
                             }
         
-                            else if (json.msg= "User not found!") {
-                                alert("Invalid credentials!")
                             
-                            }
-                            else {
-                                alert("Something else is wrong, error")
-                            }
+                            
                         }
         
                         else {
@@ -164,6 +187,8 @@ function DeleteComment() {
                             navigate("/post/"+id)
         
                             window.location.reload();
+
+                            //navigating to post if successfull
                         }
                     });
 
@@ -173,6 +198,8 @@ function DeleteComment() {
            }
 
            else {
+
+            //same post request but for admin 
 
             fetch("/api/comment/delete", {
                 method: "POST",
@@ -192,20 +219,16 @@ function DeleteComment() {
     
                 if (!json.success) {
                     
-                    if (json.msg= "Password incorrect") {
-                        alert("Wrong password")
+                    if (json.msg= "ERROR") {
+                        alert("Error occured")
                     }
     
-                    else if (json.msg= "User not found!") {
-                        alert("Invalid credentials!")
-                        
-                    }
-                    else {
-                        alert("Something else is wrong, error")
-                    }
+                    
                 }
     
                 else {
+
+                    //navigating to post page if successfull
     
                     navigate("/post/"+id)
     
@@ -237,6 +260,8 @@ function DeleteComment() {
 
 
 fetchPost();
+
+//executing function 
     
 
 
@@ -298,6 +323,8 @@ fetchPost();
 
 
     )
+
+    //returning window that asks if the user is sure or not
     }
 
 

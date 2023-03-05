@@ -1,6 +1,9 @@
 import * as React from 'react';
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
+
+//importing necessary libraries
+
 function Login() {
 
     const { t, i18n } = useTranslation();
@@ -8,7 +11,12 @@ function Login() {
         i18n.changeLanguage(lang)
     }
 
+    //setting language translation function
+
+
     const navigate = useNavigate();
+
+    //using navigate to go to pages
 
 
     const [target, SetTarget] = React.useState(null);
@@ -17,14 +25,20 @@ function Login() {
 
     const CheckUser= (event) => {
 
+        //function used to log user it
+
         event.preventDefault();
 
         var email= String(event.target[0].value);
 
         var pass= String(event.target[1].value);
 
+        //getting inputs
+
 
         fetch("/api/user/login", {
+
+            //sending post request
             method: "POST",
 
             body: JSON.stringify({
@@ -57,11 +71,15 @@ function Login() {
             else {
 
                 window.localStorage.setItem("token", json.token);
+
+                //setting token to local storage
                 
                 
                 
 
                 navigate("/");
+
+                //navigating to main page
 
                 window.location.reload();
 
@@ -138,6 +156,8 @@ function Login() {
 
 
     )
+
+    //returning form for logging in
 }
 
 
