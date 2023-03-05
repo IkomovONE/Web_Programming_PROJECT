@@ -118,7 +118,7 @@ async (req, res) => {
                 username: req.body.username,
                 email: req.body.email,
                 password: hashedPassword,
-                admin: false,
+                admin: req.body.admin,
             
             }).save((err) => {
                 if (err) return next(err)
@@ -221,58 +221,6 @@ router.get("/api/post/:id", (req, res, next) => {
 
 
 });
-
-/*router.get("/api/comment/:id/:content", (req, res, next) => {
-
-  const content= req.params.content;
-
-
-
-
-  
-
-  Snippet.findOne({_id: req.params.id}, async (err, snippet) => {
-    if(err) return next(err);
-    if(!snippet) {
-
-      return res.json({msg: "No such snippet"})
-        
-        
-        
-        }
-
-    if(snippet) {
-
-      const comments = snippet.comments;
-
-      comments.forEach((comment) => {
-
-        if (comment.content== content) {
-
-
-
-
-        }
-
-
-
-      })
-
-   
-
-      return res.json({success: true, id: snippet._id, date: snippet.date, author: snippet.author, subject: snippet.subject, description: snippet.description, code: snippet.code, likes: snippet.likes, comments: snippet.comments})
-
-
-    }
-
-        
-})
-
-
-
-});
-
-*/
 
 
 router.post("/api/editsnippet", (req, res, next) => {

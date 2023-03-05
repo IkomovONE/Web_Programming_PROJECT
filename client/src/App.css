@@ -304,6 +304,15 @@ h6 {
 
 }
 
+#Check{
+
+  font-size: medium;
+
+  color: gray;
+
+
+}
+
 #sub, textarea{
 
   background-color: gray;
@@ -340,18 +349,9 @@ input {
 
   display:grid;
 
-  
-
-  
-
-  
-
+ 
   min-height: 25cm;
-
-
-  
-
-  
+ 
 
 }
 

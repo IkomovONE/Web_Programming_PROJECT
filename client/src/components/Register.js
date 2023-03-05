@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { useNavigate } from "react-router-dom";
+import {useState, useEffect, useRef} from 'react'
 
 function Register() {
 
@@ -7,7 +8,31 @@ function Register() {
     const navigate = useNavigate();
 
 
-    const [target, SetTarget] = React.useState(null);
+    const [target, setTarget] = React.useState(null);
+
+    const [admin, setAdmin] = React.useState(false);
+
+
+    
+
+
+
+    function checkAdmin (event) {
+
+
+        useEffect(() => {
+            if (event.target.checked) {
+                setAdmin(event.target.value);
+              } else {
+                setAdmin("false");
+              }
+            
+          }, []);
+
+
+    }
+
+
 
 
 
@@ -21,6 +46,13 @@ function Register() {
 
         var pass= String(event.target[2].value);
 
+        
+
+
+        
+
+
+
 
         fetch("/api/user/register", {
             method: "POST",
@@ -28,7 +60,9 @@ function Register() {
             body: JSON.stringify({
                 username: username,
                 email: email,
-                password: pass
+                password: pass,
+                admin: admin
+
             }),
                 
          
@@ -109,6 +143,13 @@ function Register() {
                 <input type="password" id="password" name="password"></input>
 
                 <p></p>
+
+                <label for="myCheckbox" id="Check">Try admin account</label>
+
+                <input type="checkbox" id="Check"  onChange={checkAdmin(event)}></input>
+
+                <p></p>
+
 
                 <button type="submit" id="sub"> Register </button>
 

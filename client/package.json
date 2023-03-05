@@ -15,6 +15,7 @@
     "parser": "@babel/eslint-parser",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-i18next": "^12.2.0",
     "react-router-dom": "^6.8.1",
     "react-scripts": "^5.0.1",
     "react-syntax-highlighter": "^15.5.0",

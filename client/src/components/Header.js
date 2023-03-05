@@ -2,7 +2,7 @@ import { AppBar, Toolbar } from '@mui/material'
 import * as React from 'react';
 import { Button } from '@mui/material'
 import { Box } from '@mui/material'
-
+import { useTranslation } from 'react-i18next';
 import { Typography } from '@mui/material'
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import MenuItem from '@mui/material/MenuItem';
@@ -22,6 +22,11 @@ import {Link as RouterLink} from "react-router-dom"
 
 
 const Header= () => {
+
+  const { t, i18n } = useTranslation();
+    const changeLanguage = (lang) => {
+        i18n.changeLanguage(lang)
+    }
 
   const [auth, setAuth] = React.useState(false);
 
@@ -121,6 +126,10 @@ const Header= () => {
                 {auth && <Button   color="inherit"  component={Link} to="/newpost">{("New Post")}</Button>}
 
                 <div className= "about"></div>
+
+                <Button id= "fi" color="inherit" onClick={()=> changeLanguage("fi")}>FI</Button> 
+                
+                <Button id= "en" color="inherit" onClick={()=> changeLanguage("en")}>EN</Button>
 
                 <div id= "divider">|</div>
 
