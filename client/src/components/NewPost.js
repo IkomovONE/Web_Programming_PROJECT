@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useRef, useState } from 'react';
-
+import { useTranslation } from 'react-i18next';
 import { useNavigate } from "react-router-dom";
 import SyntaxHighlighter from 'react-syntax-highlighter';
 
@@ -14,21 +14,34 @@ function NewPost() {
 
     const navigate = useNavigate();
 
+    const { t, i18n } = useTranslation();
+    const changeLanguage = (lang) => {
+        i18n.changeLanguage(lang)
+    }
+
+     //setting language translation function
+
     
 
     
 
 
     const submit = (event) => {
+
+        //function for submitting 
         event.preventDefault();
 
         
 
         var token= window.localStorage.getItem("token")
 
+        //getting token
+
 
 
         fetch("/api/token/check", {
+
+            //checking the login
             method: "POST",
       
             headers: {
@@ -55,6 +68,8 @@ function NewPost() {
             var description= String(event.target[1].value);
     
             var code_lang= String(event.target[2].value).toLowerCase();
+
+            //getting inputs 
     
             if (SyntaxHighlighter.supportedLanguages.includes(code_lang)) {
                 
@@ -64,11 +79,15 @@ function NewPost() {
                 alert("Your code language is not supported. It will be posted without highlighting.")
     
             }
+
+            //giving alert message if the code language is not supported by Syntax Highlighter
     
             var code= String(event.target[3].value);
             
         
             fetch("/api/snippet", {
+
+                //post request for posting the snippet
                 method: "POST",
     
                 body: JSON.stringify({
@@ -89,22 +108,18 @@ function NewPost() {
     
                 if (!json.success) {
                     
-                    if (json.msg= "Password incorrect") {
-                        alert("Wrong password")
+                    if (json.msg= "ERROR") {
+                        alert("error")
                     }
     
-                    else if (json.msg= "User not found!") {
-                        alert("Invalid credentials!")
-                        
-                    }
-                    else {
-                        alert("Something else is wrong, error")
-                    }
+                    
                 }
     
                 else {
     
                     navigate("/")
+
+                    //navigate to main page if successfull
     
                     window.location.reload();
                 }
@@ -154,6 +169,9 @@ function NewPost() {
 
     }
     
+    //function that's used to handle enter key pressed when writing text.
+
+    
       
     
 
@@ -165,7 +183,7 @@ function NewPost() {
             <div id="darkened">
 
 
-            <h1>Create a new post</h1>
+            <h1>{t("Create a new post")}</h1>
             <h2>-------------------------------------------------</h2>
 
 
@@ -173,26 +191,26 @@ function NewPost() {
                 
 
           
-                <label id= "label" >New post subject</label>
+                <label id= "label" >{t("New post subject")}</label>
 
                 <input id= "name" type="text" name="name"></input>
 
                 <p></p>
 
-                <label id= "label" >Description</label>
+                <label id= "label" >{t("Description")}</label>
 
                 <input id= "descr" type="text" name="descr"></input>
 
                 <p></p>
 
-                <label id= "label" >Code language:</label>
+                <label id= "label" >{t("Code language:")}</label>
 
                 <input id= "code-lang" type="text" name="code-lang"></input>
                 <p></p>
 
                 
 
-                <label id= "label" >Code</label>
+                <label id= "label" >{t("Code")}</label>
 
                 <textarea ref={reference} id= "codeInp" type="text" name="code" rows="12" cols="12" onKeyDown={handleEnter}></textarea>
 
@@ -203,7 +221,7 @@ function NewPost() {
                 
 
 
-                <input id= "submit" type= "submit" name="submit" value= "Post the snippet"></input>
+                <input id= "submit" type= "submit" name="submit" value= {t("Post the snippet")}></input>
                 <p></p>
 
             
@@ -225,6 +243,8 @@ function NewPost() {
 
 
     )
+
+    //returning a form for creating a new post
     }
 
 

@@ -14,14 +14,22 @@ function NewComment({data}) {
         i18n.changeLanguage(lang)
     }
 
+    //setting language translation function
+
+
+
     const reference = useRef(null);
 
     const navigate = useNavigate();
 
     
 
+    
+
 
     const submit = (event) => {
+
+        //submit function
         event.preventDefault();
 
 
@@ -29,9 +37,13 @@ function NewComment({data}) {
 
         var token= window.localStorage.getItem("token")
 
+        //getting token
+
         
     
         fetch("/api/token/check", {
+
+            //checking if the user is logged in
           method: "POST",
     
           headers: {
@@ -58,11 +70,15 @@ function NewComment({data}) {
 
           var Id= Math.floor(Math.random() *100000);
 
-          console.log(Id)
+          //setting id for the comment, also getting author username and input
+
+          
 
        
     
           fetch("/api/comment", {
+
+            //post request for posting comment
               method: "POST",
   
               body: JSON.stringify({
@@ -96,9 +112,11 @@ function NewComment({data}) {
   
               else {
   
-                  //navigate("/")
+                  
   
                   window.location.reload();
+
+                  //reloading page if successfull
               }
           });
 
@@ -139,6 +157,9 @@ function NewComment({data}) {
         }
 
     }
+
+    //function that's used to handle enter key pressed when writing text.
+
     
       
     
@@ -195,6 +216,8 @@ function NewComment({data}) {
 
 
     )
+
+    //returning form for submitting the project
 }
 
 

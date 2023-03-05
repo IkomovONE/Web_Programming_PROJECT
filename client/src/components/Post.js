@@ -22,6 +22,9 @@ const Post = () => {
         i18n.changeLanguage(lang)
     }
 
+    //setting language translation function
+
+
 
 
     const [auth, setAuth] = React.useState(false);
@@ -30,15 +33,23 @@ const Post = () => {
     const [height, setHeight] = useState(0);
     const appRef = useRef(null);
 
+    //setting variables
+
 
 
     const CheckLogin = () => {
 
+      //function for login check
+
         var token= window.localStorage.getItem("token")
+
+        //getitng token
 
         
     
         fetch("/api/token/check", {
+
+          //post request for checking login
           method: "POST",
     
           headers: {
@@ -62,6 +73,8 @@ const Post = () => {
           setUser(username);
 
           setAdmin(json.admin)
+
+          //setting username and admin property
     
           
     
@@ -92,9 +105,12 @@ const Post = () => {
 
         window.scroll(0,0)
 
+        //scrolling page up
+
         
         
         fetch("/api/post/"+id)
+        //fetching the post with get request
         .then(response => response.json())
         .then(json => {
 
@@ -111,6 +127,8 @@ const Post = () => {
         const appHeight = appRef.current.scrollHeight;
         setHeight(appHeight);
 
+        //setting height of the app
+
 
 
         
@@ -121,6 +139,8 @@ const Post = () => {
 
 
     CheckLogin();
+
+    
 
     
 
@@ -228,6 +248,8 @@ const Post = () => {
 
         
     )
+
+    //returning the post object
 
     
 

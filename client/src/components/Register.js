@@ -16,11 +16,16 @@ function Register() {
 
     const [admin, setAdmin] = React.useState(false);
 
+    //setting states
+
 
     const { t, i18n } = useTranslation();
     const changeLanguage = (lang) => {
         i18n.changeLanguage(lang)
     }
+
+    //setting language translation function
+
 
 
     
@@ -28,6 +33,8 @@ function Register() {
 
 
     function checkAdmin (event) {
+
+        //function used to catch checkBox input for admin property
 
 
         useEffect(() => {
@@ -48,6 +55,8 @@ function Register() {
 
     const CheckUser= (event) => {
 
+        //function for checking if user exists and creating it if not
+
         event.preventDefault();
 
         var username= String(event.target[0].value);
@@ -55,6 +64,8 @@ function Register() {
         var email= String(event.target[1].value);
 
         var pass= String(event.target[2].value);
+
+        //getting inputs
 
         
 
@@ -65,6 +76,8 @@ function Register() {
 
 
         fetch("/api/user/register", {
+
+            //register post request
             method: "POST",
 
             body: JSON.stringify({
@@ -99,6 +112,8 @@ function Register() {
                 
 
                 navigate("/login");
+
+                //navigates to login page after successfull registration
 
                 window.location.reload();
 
@@ -185,6 +200,8 @@ function Register() {
 
 
     )
+
+    //rerturning registration form
 }
 
 

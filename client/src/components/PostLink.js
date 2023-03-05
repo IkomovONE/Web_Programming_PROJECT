@@ -12,6 +12,8 @@ const PostLink = ({post}) => {
         i18n.changeLanguage(lang)
     }
 
+    //setting language translation function
+
     
 
     return (
@@ -54,6 +56,8 @@ const PostLink = ({post}) => {
 
         
     )
+
+    //retuning post link object, which is seen on the main screen
 }
 
 export default PostLink

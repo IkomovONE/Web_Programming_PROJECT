@@ -12,6 +12,8 @@ function Profile({username}) {
 
     const [dataType, setDataType] = useState("profile")
 
+    //setting necessary states
+
     
 
     
@@ -19,6 +21,7 @@ function Profile({username}) {
     useEffect(() => {
       window.scroll(0,0)
         fetch("/api/user/"+id)
+        //fetching user using useEffect
         .then(response => response.json())
         .then(json => setData(json))
 
@@ -64,6 +67,8 @@ function Profile({username}) {
 
     </div>
     )
+
+    //returning user profile page
 }
 
 export default Profile
