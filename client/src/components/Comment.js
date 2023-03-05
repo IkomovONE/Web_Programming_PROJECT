@@ -2,9 +2,16 @@ import * as React from 'react';
 import { Button } from '@mui/material'
 import {Link} from 'react-router-dom'
 import {useParams} from 'react-router-dom'
+import { useTranslation } from 'react-i18next';
 
 
 const Comment = ({comment}) => {
+
+  const { t, i18n } = useTranslation();
+    const changeLanguage = (lang) => {
+        i18n.changeLanguage(lang)
+    }
+
     
     const [user, setUser] = React.useState("");
 
@@ -71,17 +78,17 @@ const Comment = ({comment}) => {
 
                 <a>|</a>
 
-                {user===comment.author || admin === true ? <Button component={Link} to={"/editComment/"+id+"/"+comment.CommentId+"/"+comment.author+"/"+comment.content} id="created"> Edit this comment</Button> : null}
+                {user===comment.author || admin === true ? <Button component={Link} to={"/editComment/"+id+"/"+comment.CommentId+"/"+comment.author+"/"+comment.content} id="created"> {t("Edit this comment")}</Button> : null}
 
                 <a>|</a>
 
-                {user===comment.author || admin === true ? <Button component={Link} to={"/deletecomment/"+id+"/"+comment.CommentId} id="created"> Delete this comment</Button> : null}
+                {user===comment.author || admin === true ? <Button component={Link} to={"/deletecomment/"+id+"/"+comment.CommentId} id="created"> {t("Delete this comment")}</Button> : null}
 
 
 
 
 
-                <a id= "whenComment">Last edited: {comment.date}</a>
+                <a id= "whenComment">{t("Last edited:")} {comment.date}</a>
                 
             </div>
 

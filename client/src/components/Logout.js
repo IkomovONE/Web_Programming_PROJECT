@@ -1,7 +1,13 @@
 
 import Button from '@mui/material/Button';
+import { useTranslation } from 'react-i18next';
 
 function Logout() {
+
+    const { t, i18n } = useTranslation();
+    const changeLanguage = (lang) => {
+        i18n.changeLanguage(lang)
+    }
 
     
 
@@ -19,10 +25,10 @@ function Logout() {
             <div id="darkened">
 
 
-            <h1>You logged out.</h1>
+            <h1>{t("You logged out.")}</h1>
             <h2>-------------------------------------------------</h2>
 
-            <Button  id= "home" color="inherit"  href="/">{("Return to Home")}</Button>
+            <Button  id= "home" color="inherit"  href="/">{t("Return to Home")}</Button>
 
             
 

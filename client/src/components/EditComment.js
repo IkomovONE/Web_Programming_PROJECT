@@ -1,10 +1,14 @@
 import * as React from 'react';
 import {useState, useEffect, useRef} from 'react'
-
+import { useTranslation } from 'react-i18next';
 import {useParams} from 'react-router-dom'
 import { useNavigate } from "react-router-dom";
 
 function EditComment() {
+    const { t, i18n } = useTranslation();
+    const changeLanguage = (lang) => {
+        i18n.changeLanguage(lang)
+    }
 
     const reference = useRef(null);
 
@@ -208,7 +212,7 @@ function EditComment() {
             <div id="darkened">
 
 
-            <h1>Edit Comment</h1>
+            <h1>{t("Edit Comment")}</h1>
             <h2>-------------------------------------------------</h2>
 
 
@@ -217,7 +221,7 @@ function EditComment() {
 
           
                
-                <label id= "label" >Description</label>
+                <label id= "label" >{t("Description")}</label>
 
                 <textarea id= "descr" type="text" name="descr" value={description} onChange={handleChangeD}>{content}</textarea>
 
@@ -226,7 +230,7 @@ function EditComment() {
                 
 
 
-                <input id= "submit" type= "submit" name="submit" value= "Save the changes"></input>
+                <input id= "submit" type= "submit" name="submit" value= {t("Save the changes")}></input>
                 <p></p>
 
             

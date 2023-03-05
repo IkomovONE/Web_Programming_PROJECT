@@ -1,11 +1,16 @@
 import * as React from 'react';
 import {useState, useEffect, useRef} from 'react'
-
+import { useTranslation } from 'react-i18next';
 import {useParams} from 'react-router-dom'
 import { useNavigate } from "react-router-dom";
 import SyntaxHighlighter from 'react-syntax-highlighter';
 
 function EditPost() {
+
+  const { t, i18n } = useTranslation();
+    const changeLanguage = (lang) => {
+        i18n.changeLanguage(lang)
+    }
 
     const reference = useRef(null);
 
@@ -234,7 +239,7 @@ fetchPost();
             <div id="darkened">
 
 
-            <h1>Edit post</h1>
+            <h1>{t("Edit post")}</h1>
             <h2>-------------------------------------------------</h2>
 
 
@@ -242,13 +247,13 @@ fetchPost();
                 
 
           
-                <label id= "label" >Post subject</label>
+                <label id= "label" > {t("Post subject")}</label>
 
                 <textarea id= "editSub" type="text" name="name"  onChange={handleChangeS} value={subject}>{data.subject}</textarea>
 
                 <p></p>
 
-                <label id= "label" >Description</label>
+                <label id= "label" >{t("Description")}</label>
 
                 <textarea id= "descr" type="text" name="descr" value={description} onChange={handleChangeD}>{data.description}</textarea>
 
@@ -256,7 +261,7 @@ fetchPost();
 
                 
 
-                <label id= "label" >Code</label>
+                <label id= "label" >{t("Code")}</label>
 
                 <textarea ref={reference} id= "codeInp" type="text" name="code" onChange={handleChange} rows="12" cols="12" onKeyDown={handleEnter} value={code} >{data.code}</textarea>
 
@@ -267,7 +272,7 @@ fetchPost();
                 
 
 
-                <input id= "submit" type= "submit" name="submit" value= "Save the changes"></input>
+                <input id= "submit" type= "submit" name="submit" value= {t("Save the changes")}></input>
                 <p></p>
 
             

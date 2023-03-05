@@ -141,6 +141,22 @@
   }
 }
 
+#dividerLink {
+
+  max-width: 0.1cm;
+
+  font-size: large;
+
+  text-align: top;
+
+  color: white;
+
+  font-family: 'Courier New', Courier, monospace;
+
+  
+
+}
+
 #divider {
 
   
@@ -576,8 +592,18 @@ input {
 
 #when {
 
-  margin-left: 10cm;
-  margin-right: 0.01cm;
+  margin-left: 0.5cm;
+  margin-right: 0.5cm;
+
+  font-size: small;
+
+  
+}
+
+#whenn {
+
+  
+  margin-right: 1cm;
 
   font-size: small;
 

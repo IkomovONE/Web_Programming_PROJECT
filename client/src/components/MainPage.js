@@ -1,9 +1,17 @@
 import {useState, useEffect} from 'react'
+import { useTranslation } from 'react-i18next';
 
 import List from "./List"
 
 
 function MainPage() {
+
+  const { t, i18n } = useTranslation();
+    const changeLanguage = (lang) => {
+        i18n.changeLanguage(lang)
+    }
+
+
     const [dataType, setDataType] = useState("snippets")
     const [data, setData] = useState([])
 
@@ -24,7 +32,7 @@ function MainPage() {
 
               <h1>Code snippets!</h1>
 
-              <h3>Newest posts</h3>
+              <h3>{t("Newest posts")}</h3>
 
 
               <h2>-------------------------------------------------</h2>

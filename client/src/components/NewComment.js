@@ -2,8 +2,14 @@ import * as React from 'react';
 import { useRef } from 'react';
 import { useNavigate } from "react-router-dom";
 import SyntaxHighlighter from 'react-syntax-highlighter';
+import { useTranslation } from 'react-i18next';
 
 function NewComment({data}) {
+
+    const { t, i18n } = useTranslation();
+    const changeLanguage = (lang) => {
+        i18n.changeLanguage(lang)
+    }
 
     const reference = useRef(null);
 
@@ -142,7 +148,7 @@ function NewComment({data}) {
             
 
 
-            <h6>Write a comment</h6>
+            <h6> {t("Write a comment")}</h6>
             
 
 
@@ -151,7 +157,7 @@ function NewComment({data}) {
 
           
                 
-                <label id= "label" >Content</label>
+                
 
                 <input ref={reference} onKeyDown={handleEnter} rows="12" cols="12" id= "descr" type="text" name="descr"></input>
 
@@ -164,7 +170,7 @@ function NewComment({data}) {
                 
 
 
-                <input id= "submit" type= "submit" name="submit" value= "Post the comment"></input>
+                <input id= "submit" type= "submit" name="submit" value= {t("Post the comment")}></input>
                 <p></p>
 
             

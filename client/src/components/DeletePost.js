@@ -1,11 +1,16 @@
 import * as React from 'react';
 import {useState, useEffect, useRef} from 'react'
-
+import { useTranslation } from 'react-i18next';
 import {useParams} from 'react-router-dom'
 import { useNavigate } from "react-router-dom";
 
 
 function DeletePost() {
+
+    const { t, i18n } = useTranslation();
+    const changeLanguage = (lang) => {
+        i18n.changeLanguage(lang)
+    }
 
    
 
@@ -234,7 +239,7 @@ fetchPost();
             <div id="darkened">
 
 
-            <h1>Are you sure?</h1>
+            <h1>{t("Are you sure?")}</h1>
             <h2>-------------------------------------------------</h2>
 
 
@@ -242,10 +247,10 @@ fetchPost();
                 
 
           
-            <button onClick={submitNo}>No</button>
+            <button onClick={submitNo}>{t("No")}</button>
 
                 
-            <button onClick={submitYes}>Yes</button>
+            <button onClick={submitYes}>{t("Yes")}</button>
 
                 
                 

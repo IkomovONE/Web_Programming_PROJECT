@@ -1,7 +1,13 @@
+import { useTranslation } from 'react-i18next';
 
 
 
 function About() {
+
+    const { t, i18n } = useTranslation();
+    const changeLanguage = (lang) => {
+        i18n.changeLanguage(lang)
+    }
 
 
     return (
@@ -11,7 +17,7 @@ function About() {
             <div id="darkened">
 
 
-            <h1>About the project.</h1>
+            <h1>{t("About the project.")}</h1>
             <h2>-------------------------------------------------</h2>
 
 

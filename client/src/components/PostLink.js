@@ -1,9 +1,15 @@
 import * as React from 'react';
 import { Button } from '@mui/material'
 import {Link} from 'react-router-dom'
+import { useTranslation } from 'react-i18next';
 
 
 const PostLink = ({post}) => {
+
+    const { t, i18n } = useTranslation();
+    const changeLanguage = (lang) => {
+        i18n.changeLanguage(lang)
+    }
 
     
 
@@ -13,10 +19,22 @@ const PostLink = ({post}) => {
         <div id="postLink">
             
             <div id= "author">
-                <a id="created" >Created by:</a>
+                <div id= "created">
+
+                <a id="created" >{t("Created by:")}</a>
                 <Button component={Link} to={"/profile/"+post.author} id="created"> {post.author}</Button>
 
-                <a id= "when">When: {post.date}</a>
+                |
+
+
+                <a id="when" >{t("Last edited:")}</a>
+                <a id="whenn">{post.date}</a>
+
+                
+                </div>
+                
+                
+                
                 <p></p>
             </div>
 

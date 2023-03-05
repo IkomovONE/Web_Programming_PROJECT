@@ -12,6 +12,8 @@
     "@testing-library/user-event": "^13.5.0",
     "eslint": "^7.11.0",
     "http-proxy-middleware": "^2.0.6",
+    "i18next-browser-languagedetector": "^7.0.1",
+    "i18next-http-backend": "^2.1.1",
     "parser": "@babel/eslint-parser",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

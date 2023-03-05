@@ -117,13 +117,13 @@ const Header= () => {
                 <div id= "divider">|</div>
 
 
-                <Button  color="inherit"  component={Link} to="/">{("Home")}</Button>
+                <Button  color="inherit"  component={Link} to="/">{t("Home")}</Button>
 
                 
 
-                <Button   color="inherit"  component={Link} to="/about">{("About")}</Button>
+                <Button   color="inherit"  component={Link} to="/about">{t("About")}</Button>
 
-                {auth && <Button   color="inherit"  component={Link} to="/newpost">{("New Post")}</Button>}
+                {auth && <Button   color="inherit"  component={Link} to="/newpost">{t("New Post")}</Button>}
 
                 <div className= "about"></div>
 
@@ -158,10 +158,10 @@ const Header= () => {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
               >
-                {!auth &&<MenuItem  onClick={handleClose} component={Link} to="/login">Log in</MenuItem>}
-                {!auth &&<MenuItem  onClick={handleClose} component={Link} to="/register">Register</MenuItem>}
-                {auth &&<MenuItem  onClick={handleClose} component={Link} to={"/profile/"+user} >My Profile</MenuItem>}
-                {auth &&<MenuItem  onClick={handleClose} component={Link} to="/logout">Log Out</MenuItem>}
+                {!auth &&<MenuItem  onClick={handleClose} component={Link} to="/login">{t("Log in")}</MenuItem>}
+                {!auth &&<MenuItem  onClick={handleClose} component={Link} to="/register">{t("Register")}</MenuItem>}
+                {auth &&<MenuItem  onClick={handleClose} component={Link} to={"/profile/"+user} >{t("My profile")}</MenuItem>}
+                {auth &&<MenuItem  onClick={handleClose} component={Link} to="/logout">{t("Log out")}</MenuItem>}
               </Menu>
             </div>
 

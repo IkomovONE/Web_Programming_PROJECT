@@ -8,12 +8,19 @@ import SyntaxHighlighter from 'react-syntax-highlighter';
 import { irBlack } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 import CommentList from './CommentList'
 import NewComment from './NewComment'
+import { useTranslation } from 'react-i18next';
 
 
 
 
 
 const Post = () => {
+
+
+  const { t, i18n } = useTranslation();
+    const changeLanguage = (lang) => {
+        i18n.changeLanguage(lang)
+    }
 
 
 
@@ -145,22 +152,22 @@ const Post = () => {
                 <div id="post">
                     
                     <div id= "author">
-                        <a id="created" >Created by:</a>
+                        <a id="created" > {t("Created by:")}</a>
                         <Button component={Link} to={"/profile/"+data.author} id="created"> {data.author}</Button>
 
                         <a>|</a>
 
-                        {user===data.author || admin === true ? <Button component={Link} to={"/editpost/"+data.id} id="created"> Edit this post</Button> : null}
+                        {user===data.author || admin === true ? <Button component={Link} to={"/editpost/"+data.id} id="created"> {t("Edit this post")}</Button> : null}
 
                         <a>|</a>
 
 
-                        {user===data.author || admin === true ? <Button component={Link} to={"/deletepost/"+data.id} id="created"> Delete this post</Button> : null}
+                        {user===data.author || admin === true ? <Button component={Link} to={"/deletepost/"+data.id} id="created"> {t("Delete this post")}</Button> : null}
 
 
                         
 
-                        <a id= "whenPost">Last edited: {data.date}</a>
+                        <a id= "whenPost">{t("Last edited:")} {data.date}</a>
                         <p></p>
                     </div>
 
@@ -204,7 +211,7 @@ const Post = () => {
 
                 {auth &&<NewComment data= {data}/>}
 
-                {!auth &&<div id="NewComment"><h6>Log in or register to write a comment!</h6></div>}
+                {!auth &&<div id="NewComment"><h6>{t("Log in or register to write a comment!")}</h6></div>}
 
 
 

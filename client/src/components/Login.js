@@ -1,7 +1,12 @@
 import * as React from 'react';
 import { useNavigate } from "react-router-dom";
-
+import { useTranslation } from 'react-i18next';
 function Login() {
+
+    const { t, i18n } = useTranslation();
+    const changeLanguage = (lang) => {
+        i18n.changeLanguage(lang)
+    }
 
     const navigate = useNavigate();
 
@@ -91,25 +96,25 @@ function Login() {
             <div id="darkened">
 
 
-            <h1>Log in to your account, please!</h1>
+            <h1>{t("Log in to your account, please!")}</h1>
             <h2>-------------------------------------------------</h2>
 
 
             <form onSubmit={CheckUser}>
         
-                <label for="email" id="label"> E-mail:</label>
+                <label for="email" id="label">{t("E-mail")}</label>
                 
                 <input type="text" id="email" name="email"></input>
 
                 <p></p>
                 
-                <label for="password" id="label"> Password: </label>
+                <label for="password" id="label">{t("Password")}</label>
                 
                 <input type="password" id="password" name="password"></input>
 
                 <p></p>
 
-                <button type="submit" id="sub" > Log in </button>
+                <button type="submit" id="sub" >{t("Log in")}</button>
 
             </form>
 
